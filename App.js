@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Card from "./components/Card";
 
 export default function App() {
-  const cardNumbers = [1, 2, 3, 4, 5, 6, 7, 8];
+  const picNames = [
+    require("./assets/baby.jpg"),
+    require("./assets/bubba.jpg"),
+    require("./assets/elmo.jpg"),
+    require("./assets/bear.jpg"),
+    require("./assets/elmo.jpg"),
+    require("./assets/bubba.jpg"),
+    require("./assets/baby.jpg"),
+    require("./assets/bear.jpg")
+  ];
+
+  const [pic1, setPic1] = useState({
+    pic1: ""
+  });
+  const [pic2, setPic2] = useState({
+    pic2: ""
+  });
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Funny Bunny</Text>
-      {cardNumbers.map((number, index) => {
-        return <Card key={index} number={number} />
-      })
-      }
+      {picNames.map((name, index) => {
+        return <Card key={index} number={index} name={name} />;
+      })}
     </View>
   );
 }

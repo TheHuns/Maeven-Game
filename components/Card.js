@@ -1,27 +1,30 @@
-import React from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 
-export default class Card extends React.Component {
-  state={
+export default function Card({ number, name }) {
+  const [showImg, setShowImg] = useState({
     showImg: false
-  }
-  
-  changeBackground() {
-    this.setState({
-      showImg: !showImg
-    })
-  }
-  render() {
-    const number = this.props.number
-    return (
-      <TouchableOpacity style={styles.cardContainer} onPress={this.changeBackground}>
+  });
+
+  let cardView = !showImg ? (
+    <Image style={{ width: "100%", height: "100%" }} source={name} />
+  ) : (
+    <Text>{number}</Text>
+  );
+
+  return (
+    <TouchableOpacity
+      style={styles.cardContainer}
+      onPress={() => setShowImg(!showImg)}
+    >
+      {cardView}
+      {/* {showImg ? (
+        <Image style={{ width: "100%", height: "100%" }} source={name} />
+      ) : (
         <Text>{number}</Text>
-      </TouchableOpacity>
-    );
-
-  }
-
-
+      )} */}
+    </TouchableOpacity>
+  );
 }
 
 const styles = StyleSheet.create({
