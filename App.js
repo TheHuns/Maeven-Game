@@ -1,32 +1,20 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Card from "./components/Card";
+import { GameContextProvider } from "./Context";
+import { picNames } from "./picNames";
 
 export default function App() {
-  const picNames = [
-    require("./assets/baby.jpg"),
-    require("./assets/bubba.jpg"),
-    require("./assets/elmo.jpg"),
-    require("./assets/bear.jpg"),
-    require("./assets/elmo.jpg"),
-    require("./assets/bubba.jpg"),
-    require("./assets/baby.jpg"),
-    require("./assets/bear.jpg")
-  ];
-
-  const [pic1, setPic1] = useState({
-    pic1: ""
-  });
-  const [pic2, setPic2] = useState({
-    pic2: ""
-  });
-
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Funny Bunny</Text>
-      {picNames.map((name, index) => {
-        return <Card key={index} number={index} name={name} />;
-      })}
+      <GameContextProvider>
+        {picNames.map((name, index) => {
+          return (
+            <Card key={index} number={index} name={name.name} uri={name.uri} />
+          );
+        })}
+      </GameContextProvider>
     </View>
   );
 }
