@@ -5,9 +5,24 @@ const GameContext = React.createContext();
 
 export class GameContextProvider extends Component {
   state = {
-    cardA: "",
-    cardB: "",
-    showImg0: false
+    cardA: {
+      name: '',
+      id: null
+    },
+    cardB: {
+      name: '',
+      id: null
+    },
+    cardsShowing:{
+      0: false,
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+      6: false,
+      7: false,
+    }
   };
 
   clearCards = () => {
@@ -18,15 +33,21 @@ export class GameContextProvider extends Component {
   };
 
   setCard = name => {
-    if (this.state.cardA == "") {
-      this.setState({
-        cardA: name
-      });
+    if (this.state.cardA.name == "") {
+      this.setState(prevState => ({
+        cardA: {
+          ...prevState.cardA,
+          name
+        }
+
+      }));
     } else {
-      this.setState(
-        {
-          cardB: name
-        },
+      this.setState(prevState => ({
+          cardB: {
+            ...prevState.cardB,
+            name
+        }
+      }),
 
         () => {
           if (this.state.cardA == this.state.cardB) {

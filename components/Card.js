@@ -2,25 +2,24 @@ import React, { useState } from "react";
 import { Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { GameConsumer } from "../Context";
 
-export default function Card({ number, name, uri }) {
-  const [showImg, setShowImg] = useState({
-    showImg: false
-  });
+export default function Card({ number, name, uri, showImg }) {
+  
 
   let cardView = !showImg ? (
     <Image style={{ width: "100%", height: "100%" }} source={uri} />
   ) : (
-    <Text>{number}</Text>
+    <Text>Flip!
+    </Text>
   );
 
   return (
     <GameConsumer>
-      {({ setCard }) => (
+      {( value ) => (
         <TouchableOpacity
-          style={styles.cardContainer}
+          style={styles.cardContainer} 
           onPress={() => {
-            setShowImg(!showImg);
-            setCard(name);
+            value.setShowImg(!showImg);
+            value.setCard(name);
           }}
         >
           {cardView}
