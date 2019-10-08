@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Card from "./components/Card";
 import { GameContextProvider } from "./Context";
+import Card from "./components/Card";
 import { picNames } from "./picNames";
-import CardContainer from "./components/CardContainer";
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Funny Bunny</Text>
       <GameContextProvider>
-        <CardContainer />
+        {picNames.map((name, index) => {
+          return (
+            <Card key={index} number={index} name={name.name} uri={name.uri} />
+          );
+        })}
       </GameContextProvider>
     </View>
   );
