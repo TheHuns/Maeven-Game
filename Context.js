@@ -34,11 +34,13 @@ export class GameContextProvider extends Component {
     this.setState(prevState => ({
       cardA: {
         ...prevState.cardA,
-        name: ""
+        name: "",
+        id: null
       },
       cardB: {
         ...prevState.cardB,
-        name: ""
+        name: "",
+        id: null
       }
     }));
   };
@@ -48,11 +50,12 @@ export class GameContextProvider extends Component {
       this.setState(prevState => ({
         cardA: {
           ...prevState.cardA,
-          name
+          name,
+          id: number
         },
         cardsShowing: {
           ...prevState.cardsShowing,
-          [number]: true
+          [number]: !this.state.cardsShowing[`${number}`]
         }
       }));
     } else {
@@ -60,18 +63,30 @@ export class GameContextProvider extends Component {
         prevState => ({
           cardB: {
             ...prevState.cardB,
-            name
+            name,
+            id: number
           },
           cardsShowing: {
             ...prevState.cardsShowing,
-            [number]: true
+            [number]: !this.state.cardsShowing[`${number}`]
           }
         }),
 
         () => {
-          if (this.state.cardA == this.state.cardB) {
+          if (this.state.cardA.name == this.state.cardB.name) {
             Alert.alert("Good Guess!");
             this.clearCards();
+          } else {
+            setTimeout(
+              function() {this.setState(prevState => ({
+              cardsShowing: {
+                ...prevState.cardsShowing,
+                [this.state.cardA.id]: false,
+                [this.state.cardB.id]: false
+              }
+              }));
+              this.clearCards();
+              }, 2000)
           }
         }
       );
