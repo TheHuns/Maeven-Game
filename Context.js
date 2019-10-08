@@ -31,10 +31,16 @@ export class GameContextProvider extends Component {
   };
 
   clearCards = () => {
-    this.setState({
-      cardA: "",
-      cardB: ""
-    });
+    this.setState(prevState => ({
+      cardA: {
+        ...prevState.cardA,
+        name: ""
+      },
+      cardB: {
+        ...prevState.cardB,
+        name: ""
+      }
+    }));
   };
 
   setCard = (name, number) => {
@@ -55,6 +61,10 @@ export class GameContextProvider extends Component {
           cardB: {
             ...prevState.cardB,
             name
+          },
+          cardsShowing: {
+            ...prevState.cardsShowing,
+            [number]: true
           }
         }),
 
