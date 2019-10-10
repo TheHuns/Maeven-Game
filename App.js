@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { GameContextProvider } from "./Context";
 import Card from "./components/Card";
 import { picNames } from "./picNames";
+import IncorrectGuessModal from "./components/IncorrectGuessModal";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
             <Card key={index} number={index} name={name.name} uri={name.uri} />
           );
         })}
+        <IncorrectGuessModal />
       </GameContextProvider>
     </View>
   );
@@ -26,7 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     padding: 20,
-    paddingVertical: "12%",
+    paddingVertical: "7%",
     justifyContent: "space-around"
   },
   title: {

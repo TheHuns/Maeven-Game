@@ -22,7 +22,8 @@ export class GameContextProvider extends Component {
       5: false,
       6: false,
       7: false
-    }
+    },
+    incorrectModalShowing: false
   };
 
   getCardState = number => {
@@ -30,6 +31,7 @@ export class GameContextProvider extends Component {
     return cardState;
   };
 
+  // Clear the current card comparisons after two have been guessed
   clearCards = () => {
     this.setState(prevState => ({
       cardA: {
@@ -45,16 +47,29 @@ export class GameContextProvider extends Component {
     }));
   };
 
-  resetCurrentCards = () => {
+  resetIncorrectModal = () => {
     this.setState(prevState => ({
-      cardsShowing: {
-        ...prevState.cardsShowing,
-        [this.state.cardA.id]: false,
-        [this.state.cardB.id]: false
-      }
-      }));
-  }
+      incorrectModalShowing: !prevState.incorrectModalShowing
+    }));
+  };
 
+  // Resets the cardsState for current two cards to flip them over on an incorrect guess
+  resetCurrentCards = () => {
+    this.setState(
+      prevState => ({
+        cardsShowing: {
+          ...prevState.cardsShowing,
+          [this.state.cardA.id]: false,
+          [this.state.cardB.id]: false
+        }
+      }),
+      () => {
+        setTimeout(() => {
+          this.resetIncorrectModal();
+        }, 200);
+      }
+    );
+  };
 
   // Main function called every time a card is flipped to run game logic
   setCard = (name, number) => {
@@ -91,11 +106,13 @@ export class GameContextProvider extends Component {
             Alert.alert("Good Guess!");
             this.clearCards();
           } else {
+            this.setState(prevState => ({
+              incorrectModalShowing: !prevState.incorrectModalShowing
+            }));
             setTimeout(() => {
               this.resetCurrentCards();
               this.clearCards();
-            }
-              ,500)
+            }, 500);
           }
         }
       );
@@ -113,7 +130,8 @@ export class GameContextProvider extends Component {
           clearCards: this.clearCards,
           setCard: this.setCard,
           getCardState: this.getCardState,
-          cardsShowing: this.state.cardsShowing
+          cardsShowing: this.state.cardsShowing,
+          incorrectModalShowing: this.state.incorrectModalShowing
         }}
       >
         {children}

@@ -33,6 +33,13 @@ export default class Card extends Component {
               ]}
               source={uri}
             />
+            <Image
+              style={[
+                styles.logo,
+                value.getCardState(number) ? styles.hidePic : null
+              ]}
+              source={require("../assets/bunny.png")}
+            />
             {/* {showImg ? (
           <Image style={{ width: "100%", height: "100%" }} source={name} />
         ) : (
@@ -48,9 +55,9 @@ export default class Card extends Component {
 const styles = StyleSheet.create({
   cardContainer: {
     backgroundColor: "lightblue",
-    height: "25%",
+    height: "22%",
     width: "40%",
-    margin: 10,
+    margin: 7,
     justifyContent: "center",
     alignItems: "center"
   },
@@ -60,5 +67,9 @@ const styles = StyleSheet.create({
   img: {
     width: "100%",
     height: "100%"
+  },
+  logo: {
+    width: "85%",
+    height: "85%"
   }
 });
