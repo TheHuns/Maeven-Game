@@ -25,14 +25,14 @@ const styles = StyleSheet.create({
     backgroundColor: "#2d2d2d",
     flexDirection: "row",
     flexWrap: "wrap",
-    padding: 25,
+    padding: 20,
     paddingVertical: "12%",
     justifyContent: "space-around"
   },
   title: {
     color: "lightblue",
     width: "100%",
-    fontSize: 22,
+    fontSize: 26,
     textAlign: "center",
     paddingBottom: 10
   }

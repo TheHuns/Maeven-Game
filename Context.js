@@ -45,7 +45,20 @@ export class GameContextProvider extends Component {
     }));
   };
 
+  resetCurrentCards = () => {
+    this.setState(prevState => ({
+      cardsShowing: {
+        ...prevState.cardsShowing,
+        [this.state.cardA.id]: false,
+        [this.state.cardB.id]: false
+      }
+      }));
+  }
+
+
+  // Main function called every time a card is flipped to run game logic
   setCard = (name, number) => {
+    // Sets first card in comparison group
     if (this.state.cardA.name == "") {
       this.setState(prevState => ({
         cardA: {
@@ -59,6 +72,7 @@ export class GameContextProvider extends Component {
         }
       }));
     } else {
+      // If first card spot is full sets the second card spot and beings comparison
       this.setState(
         prevState => ({
           cardB: {
@@ -71,22 +85,17 @@ export class GameContextProvider extends Component {
             [number]: !this.state.cardsShowing[`${number}`]
           }
         }),
-
+        // Callback executed when both spots in card comparison part of state have data
         () => {
           if (this.state.cardA.name == this.state.cardB.name) {
             Alert.alert("Good Guess!");
             this.clearCards();
           } else {
-            setTimeout(
-              function() {this.setState(prevState => ({
-              cardsShowing: {
-                ...prevState.cardsShowing,
-                [this.state.cardA.id]: false,
-                [this.state.cardB.id]: false
-              }
-              }));
+            setTimeout(() => {
+              this.resetCurrentCards();
               this.clearCards();
-              }, 2000)
+            }
+              ,500)
           }
         }
       );
