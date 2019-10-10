@@ -4,38 +4,26 @@ import { GameContextProvider } from "./Context";
 import Card from "./components/Card";
 import { picNames } from "./picNames";
 import IncorrectGuessModal from "./components/IncorrectGuessModal";
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import MemoryGameScreen from "./screens/MemoryGameScreen";
+import HomeScreen from "./screens/HomeScreen";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Funny Bunny</Text>
-      <GameContextProvider>
-        {picNames.map((name, index) => {
-          return (
-            <Card key={index} number={index} name={name.name} uri={name.uri} />
-          );
-        })}
-        <IncorrectGuessModal />
-      </GameContextProvider>
-    </View>
+    <AppContainer />
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#2d2d2d",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    padding: 20,
-    paddingVertical: "7%",
-    justifyContent: "space-around"
+const AppContainer = createAppContainer(RootStack);
+
+
+const RootStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    MemoryGame: MemoryGameScreen,
   },
-  title: {
-    color: "lightblue",
-    width: "100%",
-    fontSize: 26,
-    textAlign: "center",
-    paddingBottom: 10
+  {
+    initialRouteName: 'Home',
   }
-});
+);
