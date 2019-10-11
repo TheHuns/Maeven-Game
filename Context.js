@@ -66,7 +66,7 @@ export class GameContextProvider extends Component {
       () => {
         setTimeout(() => {
           this.resetIncorrectModal();
-        }, 200);
+        }, 400);
       }
     );
   };
