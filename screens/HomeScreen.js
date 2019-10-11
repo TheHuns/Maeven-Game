@@ -11,7 +11,12 @@ export default class HomeScreen extends React.Component {
           source={require("../assets/bunny.png")}
           style={{ height: 150, width: 150 }}
         ></Image>
-        <Button title="Take Pictures" />
+        <Button
+          title="Take Pictures"
+          onPress={() => {
+            this.props.navigation.navigate("Picture");
+          }}
+        />
         <Button
           title="Go To Game"
           onPress={() => {

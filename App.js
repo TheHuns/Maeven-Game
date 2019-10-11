@@ -3,11 +3,13 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import MemoryGameScreen from "./screens/MemoryGameScreen";
 import HomeScreen from "./screens/HomeScreen";
+import TakePicturesScreen from "./screens/TakePicturesScreen";
 
 const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
-    MemoryGame: MemoryGameScreen
+    MemoryGame: MemoryGameScreen,
+    Picture: TakePicturesScreen
   },
   {
     initialRouteName: "Home",
