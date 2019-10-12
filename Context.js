@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import { Alert } from "react-native";
-
 const GameContext = React.createContext();
 
 export class GameContextProvider extends Component {
@@ -23,7 +21,8 @@ export class GameContextProvider extends Component {
       6: false,
       7: false
     },
-    incorrectModalShowing: false
+    incorrectModalShowing: false,
+    correctModalShowing: false
   };
 
   getCardState = number => {
@@ -43,7 +42,8 @@ export class GameContextProvider extends Component {
         ...prevState.cardB,
         name: "",
         id: null
-      }
+      },
+      correctModalShowing: false
     }));
   };
 
@@ -73,6 +73,8 @@ export class GameContextProvider extends Component {
 
   // Main function called every time a card is flipped to run game logic
   setCard = (name, number) => {
+    // check if card is already flipped over
+    if (this.state.cardsShowing[`${number}`]) return null;
     // Sets first card in comparison group
     if (this.state.cardA.name == "") {
       this.setState(prevState => ({
@@ -103,8 +105,12 @@ export class GameContextProvider extends Component {
         // Callback executed when both spots in card comparison part of state have data
         () => {
           if (this.state.cardA.name == this.state.cardB.name) {
-            Alert.alert("Good Guess!");
-            this.clearCards();
+            this.setState(prevState => ({
+              correctModalShowing: !prevState.correctModalShowing
+            }));
+            setTimeout(() => {
+              this.clearCards();
+            }, 1300);
           } else {
             this.setState(prevState => ({
               incorrectModalShowing: !prevState.incorrectModalShowing
@@ -112,7 +118,7 @@ export class GameContextProvider extends Component {
             setTimeout(() => {
               this.resetCurrentCards();
               this.clearCards();
-            }, 500);
+            }, 1300);
           }
         }
       );
@@ -131,7 +137,8 @@ export class GameContextProvider extends Component {
           setCard: this.setCard,
           getCardState: this.getCardState,
           cardsShowing: this.state.cardsShowing,
-          incorrectModalShowing: this.state.incorrectModalShowing
+          incorrectModalShowing: this.state.incorrectModalShowing,
+          correctModalShowing: this.state.correctModalShowing
         }}
       >
         {children}

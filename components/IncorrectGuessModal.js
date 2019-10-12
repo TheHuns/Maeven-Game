@@ -12,11 +12,13 @@ export default function IncorrectGuessModal() {
             value.incorrectModalShowing ? styles.hideModal : null
           ]}
         >
-          <Image
-            source={require("../assets/sadface.jpg")}
-            style={{ height: 100, width: 100 }}
-          />
-          <Text style={styles.text}>Try Again!</Text>
+          <View style={styles.innerBackground}>
+            <Image
+              source={require("../assets/sadface.jpg")}
+              style={{ height: 50, width: 50 }}
+            />
+            <Text style={styles.text}>So Close, Try Again!</Text>
+          </View>
         </View>
       )}
     </GameConsumer>
@@ -28,18 +30,26 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: "150%",
     zIndex: 5,
-    backgroundColor: "rgba(50, 50, 50, 0.85)",
-    alignItems: "center",
+    backgroundColor: "rgba(50, 50, 50, 0.2)",
     justifyContent: "space-around",
-    height: "100%",
-    width: "100%",
-    paddingVertical: 150
+    flexDirection: "row",
+    height: "120%",
+    width: "100%"
   },
   hideModal: {
-    top: 25
+    top: 12
   },
   text: {
-    fontSize: 30,
-    color: "#eee"
+    fontSize: 20,
+    color: "orange"
+  },
+  innerBackground: {
+    width: "100%",
+    padding: 10,
+    backgroundColor: "#f4f4f4",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    height: 76
   }
 });

@@ -21,6 +21,7 @@ export default class HomeScreen extends React.Component {
           title="Go To Game"
           onPress={() => {
             this.props.navigation.navigate("MemoryGame");
+            console.log(this.props);
           }}
         />
       </View>
