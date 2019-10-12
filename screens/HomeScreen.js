@@ -1,9 +1,10 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, Button } from "react-native";
-// import Button from "../components/Button";
+import MainButton from "../components/MainButton";
 
 export default class HomeScreen extends React.Component {
   render() {
+    const { navigation } = this.props;
     return (
       <View style={styles.container}>
         <Text>Funny Bunny</Text>
@@ -21,9 +22,9 @@ export default class HomeScreen extends React.Component {
           title="Go To Game"
           onPress={() => {
             this.props.navigation.navigate("MemoryGame");
-            console.log(this.props);
           }}
         />
+        <MainButton route="Picture" buttonText="Test" navigation={navigation} />
       </View>
     );
   }

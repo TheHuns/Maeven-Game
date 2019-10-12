@@ -20,15 +20,15 @@ export default class MemoryGameScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: "row", marginBottom: 5 }}>
           <TouchableOpacity
             onPress={() => this.backArrowHandler()}
             style={styles.backButton}
           >
-            <Text>Back</Text>
+            <Text style={styles.backButtonText}>Back</Text>
             {/* <Image source={require("../assets/backArrow.png")} /> */}
           </TouchableOpacity>
-          <Text style={styles.title}>Funny Bunny</Text>
+          <Text style={styles.title}>Memory Game</Text>
         </View>
         <GameContextProvider>
           {picNames.map((name, index) => {
@@ -68,9 +68,14 @@ const styles = StyleSheet.create({
   },
   backButton: {
     height: 40,
-    width: 50,
-    backgroundColor: "rgba(210, 210, 210, .5)",
+    width: 70,
+    backgroundColor: "rgba(59, 89, 152, .8)",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    borderRadius: 5
+  },
+  backButtonText: {
+    color: "#f4f4f4",
+    fontSize: 16
   }
 });
