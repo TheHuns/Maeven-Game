@@ -14,6 +14,12 @@ export default class TakePicturesScreen extends React.Component {
     this.setState({ hasCameraPermission: status === "granted" });
   }
 
+  snap = async () => {
+    if (this.camera) {
+      let photo = await this.camera.takePictureAsync({ quality: 0.2 });
+    }
+  };
+
   render() {
     const { hasCameraPermission } = this.state;
     if (hasCameraPermission === null) {
@@ -22,7 +28,7 @@ export default class TakePicturesScreen extends React.Component {
       return <Text>No access to camera</Text>;
     } else {
       return (
-        <View style={{ flex: 1, padding: 10 }}>
+        <View style={{ flex: 2, padding: 10 }}>
           <Camera style={{ flex: 1 }} type={this.state.type}>
             <View
               style={{
@@ -30,31 +36,31 @@ export default class TakePicturesScreen extends React.Component {
                 backgroundColor: "transparent",
                 flexDirection: "row"
               }}
-            >
-              <TouchableOpacity
-                style={{
-                  flex: 0.1,
-                  alignSelf: "flex-end",
-                  alignItems: "center"
-                }}
-                onPress={() => {
-                  this.setState({
-                    type:
-                      this.state.type === Camera.Constants.Type.back
-                        ? Camera.Constants.Type.front
-                        : Camera.Constants.Type.back
-                  });
-                }}
-              >
-                <Text
-                  style={{ fontSize: 18, marginBottom: 10, color: "white" }}
-                >
-                  {" "}
-                  Flip{" "}
-                </Text>
-              </TouchableOpacity>
-            </View>
+            ></View>
           </Camera>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              justifyContent: "space-around"
+            }}
+          >
+            <TouchableOpacity onPress={() => this.snap()}>
+              <Text style={{ fontSize: 18, marginBottom: 10 }}> Capture </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                this.setState({
+                  type:
+                    this.state.type === Camera.Constants.Type.back
+                      ? Camera.Constants.Type.front
+                      : Camera.Constants.Type.back
+                });
+              }}
+            >
+              <Text style={{ fontSize: 18, marginBottom: 10 }}> Flip </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       );
     }
