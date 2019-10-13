@@ -32,7 +32,13 @@ export default class HomeScreen extends React.Component {
           onPress={() => this.props.navigation.navigate("Picture")}
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Select or Take Pictures</Text>
+          <Text style={styles.buttonText}>Take Pictures</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("Images")}
+          style={styles.button}
+        >
+          <Text style={styles.buttonText}>Select Pictures</Text>
         </TouchableOpacity>
       </View>
     );
@@ -56,7 +62,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    fontFamily: "Futura-CondensedExtraBold",
-    fontFamily: "Roboto"
+    fontFamily: "Futura-CondensedExtraBold"
   }
 });

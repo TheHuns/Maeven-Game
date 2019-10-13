@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import * as Permissions from "expo-permissions";
 import { Camera } from "expo-camera";
+import * as FileSystem from 'expo-file-system';
 
 export default class TakePicturesScreen extends React.Component {
   state = {
@@ -12,11 +13,14 @@ export default class TakePicturesScreen extends React.Component {
   async componentDidMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     this.setState({ hasCameraPermission: status === "granted" });
+    let data = FileSystem.cacheDirectory;
+    console.log(data);
   }
 
   snap = async () => {
     if (this.camera) {
       let photo = await this.camera.takePictureAsync({ quality: 0.2 });
+      await FileSystem.cacheDirectory(photo);
     }
   };
 
