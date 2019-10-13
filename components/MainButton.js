@@ -5,7 +5,8 @@ export default class MainButton extends React.Component {
   route = this.props.route;
 
   handlePress = route => {
-    this.props.navigation.actions.navigate([`${route}`]);
+    this.props.navigation.navigate([`${route}`]);
+    console.log(this.props);
   };
 
   render() {
@@ -13,7 +14,7 @@ export default class MainButton extends React.Component {
     return (
       <TouchableOpacity
         style={styles.button}
-        onPress={() => this.handlePress()}
+        onPress={() => this.handlePress(this.route)}
       >
         <Text style={styles.text}>{buttonText}</Text>
       </TouchableOpacity>
