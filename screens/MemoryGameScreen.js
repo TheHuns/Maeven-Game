@@ -25,8 +25,8 @@ export default class MemoryGameScreen extends React.Component {
             onPress={() => this.backArrowHandler()}
             style={styles.backButton}
           >
-            <Text style={styles.backButtonText}>Back</Text>
-            {/* <Image source={require("../assets/backArrow.png")} /> */}
+            {/* <Text style={styles.backButtonText}>Back</Text> */}
+            <Image source={require("../assets/backArrow.png")} style={{height: 20, width: 20}}/>
           </TouchableOpacity>
           <Text style={styles.title}>Memory Game</Text>
         </View>
