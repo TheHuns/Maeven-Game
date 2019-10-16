@@ -4,23 +4,26 @@ import { Button, Image, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
+import {GameConsumer} from '../Context'
 
 export default class ImageSelectScreen extends React.Component {
-  state = {
-    image: null,
-  };
 
   render() {
-    let { image } = this.state;
 
     return (
+      
+
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Button
           title="Pick an image from camera roll"
           onPress={this._pickImage}
-        />
-        {image &&
-          <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+        /><GameConsumer>
+        <View>
+          {value => (
+            value.
+          )}
+        </View>}
+      </GameConsumer>
       </View>
     );
   }
@@ -43,6 +46,7 @@ export default class ImageSelectScreen extends React.Component {
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
+      quality: 0.2
     });
 
     console.log(result);

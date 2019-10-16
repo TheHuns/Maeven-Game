@@ -22,7 +22,8 @@ export class GameContextProvider extends Component {
       7: false
     },
     incorrectModalShowing: false,
-    correctModalShowing: false
+    correctModalShowing: false,
+    picList: []
   };
 
   getCardState = number => {
@@ -125,6 +126,24 @@ export class GameContextProvider extends Component {
     }
   };
 
+  // Set array of images from camera roll
+  _pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 0.2
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      this.setState(prevState => ({
+        picList: [...prevState.picList, result.uri]
+      }));
+    }
+  };
+
   render() {
     const { children } = this.props;
 
@@ -138,7 +157,9 @@ export class GameContextProvider extends Component {
           getCardState: this.getCardState,
           cardsShowing: this.state.cardsShowing,
           incorrectModalShowing: this.state.incorrectModalShowing,
-          correctModalShowing: this.state.correctModalShowing
+          correctModalShowing: this.state.correctModalShowing,
+          picList: this.state.picList,
+          _pickImage: this._pickImage
         }}
       >
         {children}
