@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   buttonText: {
-    fontSize: 18,
-    fontFamily: "Roboto"
+    fontSize: 18
   }
 });

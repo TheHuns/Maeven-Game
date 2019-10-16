@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 const GameContext = React.createContext();
+import * as ImagePicker from "expo-image-picker";
 
 export class GameContextProvider extends Component {
   state = {
@@ -132,7 +133,7 @@ export class GameContextProvider extends Component {
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
-      quality: 0.2
+      quality: 0.1
     });
 
     console.log(result);
@@ -142,6 +143,14 @@ export class GameContextProvider extends Component {
         picList: [...prevState.picList, result.uri]
       }));
     }
+
+    console.log(this.state.picList);
+  };
+
+  _deSelectImages = () => {
+    this.setState({
+      picList: []
+    });
   };
 
   render() {
@@ -159,7 +168,8 @@ export class GameContextProvider extends Component {
           incorrectModalShowing: this.state.incorrectModalShowing,
           correctModalShowing: this.state.correctModalShowing,
           picList: this.state.picList,
-          _pickImage: this._pickImage
+          _pickImage: this._pickImage,
+          _deSelectImages: this._deSelectImages
         }}
       >
         {children}
