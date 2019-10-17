@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, Image, View, Text } from "react-native";
+import { Button, Image, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
@@ -26,31 +26,50 @@ export default class ImageSelectScreen extends React.Component {
         <View
           style={{
             flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            flexWrap: "wrap"
+            paddingTop: 22
           }}
         >
+          <View style={styles.headerContainer}>
+
           <GameConsumer>
             {value => (
-              <Button
-                title="Pick an image from camera roll"
+              <TouchableOpacity
+                style={styles.button}
                 onPress={() => value._pickImage()}
-              />
+              ><Text style={styles.buttonText}>Select Images</Text></TouchableOpacity>
             )}
           </GameConsumer>
-          <PicDisplay />
           <GameConsumer>
             {value => (
-              <Button
-                title="Deselect Images"
+              <TouchableOpacity
                 onPress={() => value._deSelectImages()}
-                style={{ marginTop: 20 }}
-              />
+                style={styles.button}
+              ><Text style={styles.buttonText}>Cancel Selections</Text></TouchableOpacity>
             )}
           </GameConsumer>
+          </View>
+          <PicDisplay />
         </View>
       </GameContextProvider>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  button: {
+    width: "40%",
+    height: 50,
+    backgroundColor: "#f4f4f4",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 12
+  },
+  buttonText: {
+    fontSize: 18
+  },
+  headerContainer: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginBottom: 50
+  }
+})
