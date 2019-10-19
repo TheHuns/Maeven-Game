@@ -15,13 +15,13 @@ export default class HomeScreen extends React.Component {
     const { navigation } = this.props;
     return (
       <View style={styles.container}>
-        <Text style={styles.buttonText}>Funny Bunny</Text>
+        <Text style={[styles.buttonText, {fontSize: 26}]}>Funny Bunny</Text>
         <Image
           source={require("../assets/bunny.png")}
           style={{ height: 150, width: 150 }}
         ></Image>
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => this.props.navigation.navigate("MemoryGame")}
           style={styles.button}
         >
@@ -33,12 +33,12 @@ export default class HomeScreen extends React.Component {
           style={styles.button}
         >
           <Text style={styles.buttonText}>Take Pictures</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate("Images")}
           style={styles.button}
         >
-          <Text style={styles.buttonText}>Select Pictures</Text>
+          <Text style={styles.buttonText, {color: "#3C72CB"}}>Select Pictures and Begin Game</Text>
         </TouchableOpacity>
       </View>
     );
@@ -51,14 +51,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 15,
     justifyContent: "space-around",
-    backgroundColor: "lightblue"
+    backgroundColor: "#f4f4f4"
   },
   button: {
-    width: 200,
+    width: "80%",
     height: 50,
-    backgroundColor: "#f4f4f4",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    margin: 12,
+    backgroundColor: "#B6CAEC"
   },
   buttonText: {
     fontSize: 18

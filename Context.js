@@ -152,6 +152,13 @@ export class GameContextProvider extends Component {
     });
   };
 
+  gameSetupHandler = () => {
+    let tempList = [...this.state.picList];
+    let doubledList = this.state.picList.concat(tempList);
+    let mixedList = doubledList.sort(() => Math.random() - 0.5);
+    return mixedList;
+  }
+
   render() {
     const { children } = this.props;
 
@@ -168,7 +175,8 @@ export class GameContextProvider extends Component {
           correctModalShowing: this.state.correctModalShowing,
           picList: this.state.picList,
           _pickImage: this._pickImage,
-          _deSelectImages: this._deSelectImages
+          _deSelectImages: this._deSelectImages,
+          gameSetupHandler: this.gameSetupHandler
         }}
       >
         {children}

@@ -5,8 +5,8 @@ import { GameConsumer } from "../Context";
 export default class PicDisplay extends Component {
   render() {
     return (
-        <View style={{justifyContent: "center", flex: 3, flexDirection: "row", flexWrap: "wrap", alignItems: "center", paddingHorizontal: 10}}>
-          <Text>Select 4 pictures from camera roll the select the start button at bottom to begin game.</Text>
+        <View style={{justifyContent: "center", flex: 3, flexDirection: "row", flexWrap: "wrap", alignItems: "center", paddingHorizontal: 30}}>
+          <Text style={{backgroundColor: "#e4e4e4", padding: 4}}>Select 4 pictures from camera roll,  then select the start button at bottom to begin game.</Text>
       <GameConsumer>
         {value => {
           if (value.picList.length < 1) {

@@ -20,13 +20,18 @@ export default class ImageSelectScreen extends React.Component {
     }
   };
 
+  navigateToGame = () => {
+    this.props.navigation.navigate("MemoryGame");
+  }
+
   render() {
     return (
       <GameContextProvider>
         <View
           style={{
             flex: 1,
-            paddingTop: 22
+            paddingTop: 22,
+            backgroundColor: "#f4f4f4"
           }}
         >
           <View style={styles.headerContainer}>
@@ -34,21 +39,27 @@ export default class ImageSelectScreen extends React.Component {
           <GameConsumer>
             {value => (
               <TouchableOpacity
-                style={styles.button}
+                style={ styles.buttonSelect}
                 onPress={() => value._pickImage()}
-              ><Text style={styles.buttonText}>Select Images</Text></TouchableOpacity>
+              ><Text style={styles.buttonText, {color: "#3C72CB"}}>Select Images</Text></TouchableOpacity>
             )}
           </GameConsumer>
           <GameConsumer>
             {value => (
               <TouchableOpacity
                 onPress={() => value._deSelectImages()}
-                style={styles.button}
-              ><Text style={styles.buttonText}>Cancel Selections</Text></TouchableOpacity>
+                style={ styles.buttonCancel}
+              ><Text style={styles.buttonText, {color: "#DF5334"}}>Cancel Selections</Text></TouchableOpacity>
             )}
           </GameConsumer>
           </View>
           <PicDisplay />
+          
+              <TouchableOpacity
+                style={ [styles.buttonSelect, {width: "80%", marginHorizontal: "10%", marginBottom: 25}]}
+                onPress={() => this.navigateToGame()}
+              ><Text style={styles.buttonText, {color: "#3C72CB"}}>Start Game</Text></TouchableOpacity>
+            
         </View>
       </GameContextProvider>
     );
@@ -56,13 +67,22 @@ export default class ImageSelectScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  button: {
+  
+  buttonSelect:{
     width: "40%",
     height: 50,
-    backgroundColor: "#f4f4f4",
     alignItems: "center",
     justifyContent: "center",
-    margin: 12
+    margin: 12,
+    backgroundColor: "#B6CAEC"
+  },
+  buttonCancel: {
+    width: "40%",
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 12,
+    backgroundColor: "#F3BFB3"
   },
   buttonText: {
     fontSize: 18

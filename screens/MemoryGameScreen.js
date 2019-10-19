@@ -7,13 +7,18 @@ import {
   TouchableOpacity,
   Image
 } from "react-native";
-import { GameContextProvider } from "../Context";
+import { GameContextProvider, GameConsumer } from "../Context";
 import Card from "../components/Card";
 import { picNames } from "../picNames";
 import IncorrectGuessModal from "../components/IncorrectGuessModal";
 import CorrectGuessModal from "../components/CorrectGuessModal";
 
 export default class MemoryGameScreen extends React.Component {
+  componentDidMount() {
+    let hookTest = this.context;
+    console.log(hookTest);
+  }
+  
   backArrowHandler = () => {
     this.props.navigation.navigate("Home");
   };
@@ -31,16 +36,24 @@ export default class MemoryGameScreen extends React.Component {
           <Text style={styles.title}>Memory Game</Text>
         </View>
         <GameContextProvider>
-          {picNames.map((name, index) => {
-            return (
-              <Card
-                key={index}
-                number={index}
-                name={name.name}
-                uri={name.uri}
-              />
-            );
-          })}
+          <GameConsumer>
+
+          {value => {
+            let list = value.gameSetupHandler();
+            return(
+              list.map((name, index) => {
+                return (
+                  <Card
+                    key={index}
+                    number={index}
+                    name={name}
+                    uri={name}
+                  />
+                );
+              }))
+            }            
+          }
+          </GameConsumer>
           <IncorrectGuessModal />
           <CorrectGuessModal />
         </GameContextProvider>
@@ -79,3 +92,5 @@ const styles = StyleSheet.create({
     fontSize: 16
   }
 });
+
+MemoryGameScreen.contextType = GameConsumer;
