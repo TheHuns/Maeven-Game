@@ -22,7 +22,6 @@ export default class Card extends Component {
           <TouchableOpacity
             style={styles.cardContainer}
             onPress={() => {
-              console.log(value.getCardState(number));
               value.setCard(name, number);
             }}
           >
@@ -31,7 +30,7 @@ export default class Card extends Component {
                 styles.img,
                 value.getCardState(number) ? null : styles.hidePic
               ]}
-              source={uri}
+              source={{ uri: uri }}
             />
             <Image
               style={[

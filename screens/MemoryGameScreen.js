@@ -1,24 +1,24 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TouchableOpacity,
-  Image
-} from "react-native";
-import { GameContextProvider, GameConsumer } from "../Context";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import GameContext, { GameConsumer } from "../Context";
 import Card from "../components/Card";
-import { picNames } from "../picNames";
 import IncorrectGuessModal from "../components/IncorrectGuessModal";
 import CorrectGuessModal from "../components/CorrectGuessModal";
 
 export default class MemoryGameScreen extends React.Component {
+  state = {
+    list: []
+  };
+  static contextType = GameContext;
+
   componentDidMount() {
     let hookTest = this.context;
-    console.log(hookTest);
+    hookTest.cleanStart();
+    this.setState({
+      list: hookTest.gameSetupHandler()
+    });
   }
-  
+
   backArrowHandler = () => {
     this.props.navigation.navigate("Home");
   };
@@ -31,32 +31,19 @@ export default class MemoryGameScreen extends React.Component {
             style={styles.backButton}
           >
             {/* <Text style={styles.backButtonText}>Back</Text> */}
-            <Image source={require("../assets/backArrow.png")} style={{height: 20, width: 20}}/>
+            <Image
+              source={require("../assets/backArrow.png")}
+              style={{ height: 20, width: 20 }}
+            />
           </TouchableOpacity>
           <Text style={styles.title}>Memory Game</Text>
         </View>
-        <GameContextProvider>
-          <GameConsumer>
+        {this.state.list.map((name, index) => {
+          return <Card key={index} number={index} name={name} uri={name} />;
+        })}
 
-          {value => {
-            let list = value.gameSetupHandler();
-            return(
-              list.map((name, index) => {
-                return (
-                  <Card
-                    key={index}
-                    number={index}
-                    name={name}
-                    uri={name}
-                  />
-                );
-              }))
-            }            
-          }
-          </GameConsumer>
-          <IncorrectGuessModal />
-          <CorrectGuessModal />
-        </GameContextProvider>
+        <IncorrectGuessModal />
+        <CorrectGuessModal />
       </View>
     );
   }
@@ -92,5 +79,3 @@ const styles = StyleSheet.create({
     fontSize: 16
   }
 });
-
-MemoryGameScreen.contextType = GameConsumer;

@@ -5,6 +5,7 @@ import MemoryGameScreen from "./screens/MemoryGameScreen";
 import HomeScreen from "./screens/HomeScreen";
 import TakePicturesScreen from "./screens/TakePicturesScreen";
 import ImageSelectScreen from "./screens/ImageSelectScreen";
+import { GameContextProvider } from "./Context";
 
 const RootStack = createStackNavigator(
   {
@@ -23,6 +24,10 @@ const AppContainer = createAppContainer(RootStack);
 
 export default class App extends React.Component {
   render() {
-    return <AppContainer />;
+    return (
+      <GameContextProvider>
+        <AppContainer />
+      </GameContextProvider>
+    );
   }
 }

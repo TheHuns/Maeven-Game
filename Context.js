@@ -32,6 +32,31 @@ export class GameContextProvider extends Component {
     return cardState;
   };
 
+  cleanStart = () => {
+    this.setState(prevState => ({
+      cardA: {
+        ...prevState.cardA,
+        name: "",
+        id: null
+      },
+      cardB: {
+        ...prevState.cardB,
+        name: "",
+        id: null
+      },
+      cardsShowing: {
+        0: false,
+        1: false,
+        2: false,
+        3: false,
+        4: false,
+        5: false,
+        6: false,
+        7: false
+      }
+    }));
+  };
+
   // Clear the current card comparisons after two have been guessed
   clearCards = () => {
     this.setState(prevState => ({
@@ -132,7 +157,8 @@ export class GameContextProvider extends Component {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
-      aspect: [4, 3]
+      aspect: [4, 3],
+      quality: 0.1
     });
 
     console.log(result);
@@ -157,7 +183,7 @@ export class GameContextProvider extends Component {
     let doubledList = this.state.picList.concat(tempList);
     let mixedList = doubledList.sort(() => Math.random() - 0.5);
     return mixedList;
-  }
+  };
 
   render() {
     const { children } = this.props;
@@ -176,7 +202,8 @@ export class GameContextProvider extends Component {
           picList: this.state.picList,
           _pickImage: this._pickImage,
           _deSelectImages: this._deSelectImages,
-          gameSetupHandler: this.gameSetupHandler
+          gameSetupHandler: this.gameSetupHandler,
+          cleanStart: this.cleanStart
         }}
       >
         {children}
@@ -186,3 +213,5 @@ export class GameContextProvider extends Component {
 }
 
 export const GameConsumer = GameContext.Consumer;
+export const GameProvider = GameContext.Provider;
+export default GameContext;
