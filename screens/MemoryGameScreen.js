@@ -4,6 +4,7 @@ import GameContext, { GameConsumer } from "../Context";
 import Card from "../components/Card";
 import IncorrectGuessModal from "../components/IncorrectGuessModal";
 import CorrectGuessModal from "../components/CorrectGuessModal";
+import GameWinModal from "../components/GameWinModal";
 
 export default class MemoryGameScreen extends React.Component {
   state = {
@@ -44,6 +45,7 @@ export default class MemoryGameScreen extends React.Component {
 
         <IncorrectGuessModal />
         <CorrectGuessModal />
+        <GameWinModal />
       </View>
     );
   }

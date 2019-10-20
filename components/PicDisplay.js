@@ -16,7 +16,7 @@ export default class PicDisplay extends Component {
         }}
       >
         <Text style={{ backgroundColor: "#e4e4e4", padding: 4 }}>
-          Select 4 pictures from camera roll the select the start button at
+          Select 2 to 4 pictures from camera roll the select the start button at
           bottom to begin game.
         </Text>
         <GameConsumer>
@@ -33,7 +33,7 @@ export default class PicDisplay extends Component {
                     <Text>{index + 1}</Text>
                     <Image
                       source={{ uri: uri }}
-                      style={{ height: 150, width: 150, margin: 5 }}
+                      style={{ height: 120, width: 120, margin: 5 }}
                       key={uri}
                     />
                   </View>

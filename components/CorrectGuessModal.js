@@ -14,7 +14,7 @@ export default function CorrectGuessModal() {
         >
           <View style={styles.innerBackground}>
             <Image
-              source={require("../assets/sadface.jpg")}
+              source={require("../assets/thumbs_up.png")}
               style={{ height: 50, width: 50 }}
             />
             <Text style={styles.text}>Good Job, That's a Match!</Text>
@@ -30,14 +30,14 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: "150%",
     zIndex: 5,
-    backgroundColor: "rgba(50, 50, 50, 0.2)",
+    backgroundColor: "rgba(150, 150, 150, 0.1)",
     justifyContent: "space-around",
     flexDirection: "row",
     height: "120%",
     width: "100%"
   },
   hideModal: {
-    top: 12
+    top: 15
   },
   text: {
     fontSize: 20,
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   innerBackground: {
     width: "100%",
     padding: 10,
-    backgroundColor: "#f4f4f4",
+    backgroundColor: "rgba(200, 200, 200, 0.8)",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",

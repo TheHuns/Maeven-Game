@@ -15,25 +15,14 @@ export default class HomeScreen extends React.Component {
     const { navigation } = this.props;
     return (
       <View style={styles.container}>
-        <Text style={[styles.buttonText, {fontSize: 26}]}>Funny Bunny</Text>
+        <View style={styles.iconStyle}>
         <Image
           source={require("../assets/bunny.png")}
-          style={{ height: 150, width: 150 }}
+          style={{height: 250, width: 250}}
         ></Image>
 
-        {/* <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("MemoryGame")}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Start Game</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => this.props.navigation.navigate("Picture")}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Take Pictures</Text>
-        </TouchableOpacity> */}
+        </View>
+        <Text style={[styles.buttonText, {fontSize: 26}]}>Funny Bunny</Text>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate("Images")}
           style={styles.button}
@@ -59,9 +48,31 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     margin: 12,
-    backgroundColor: "#B6CAEC"
+    backgroundColor: "#B6CAEC",
+    shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 6,
+},
+shadowOpacity: 0.37,
+shadowRadius: 7.49,
+
+elevation: 12
   },
   buttonText: {
     fontSize: 18
+  },
+  iconStyle: {
+    height: 250, width: 250, borderRadius: 125, borderWidth: 1,
+    borderColor: "#f4f4f4",
+    shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 6,
+},
+shadowOpacity: 0.37,
+shadowRadius: 7.49,
+
+elevation: 12
   }
 });
