@@ -26,7 +26,7 @@ export class GameContextProvider extends Component {
     correctModalShowing: false,
     picList: [],
     gameCount: 0,
-    gameWinModalShow: false
+    gameWinModalShow: true
   };
 
   getCardState = number => {

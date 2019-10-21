@@ -73,7 +73,9 @@ const styles = StyleSheet.create({
   },
   textBox: {
     flex: 2,
-    justifyContent: "space-around"
+    justifyContent: "space-around",
+    alignItems: "center",
+    paddingVertical: 15
   },
   button: {
     width: "80%",
