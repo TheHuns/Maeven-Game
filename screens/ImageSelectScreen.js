@@ -99,14 +99,14 @@ const styles = StyleSheet.create({
     margin: 12,
     backgroundColor: "#B6CAEC",
     shadowColor: "#000",
-shadowOffset: {
-	width: 0,
-	height: 6,
-},
-shadowOpacity: 0.37,
-shadowRadius: 7.49,
+    shadowOffset: {
+      width: 0,
+      height: 6
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
 
-elevation: 12
+    elevation: 12
   },
   buttonCancel: {
     width: "40%",
@@ -116,14 +116,14 @@ elevation: 12
     margin: 12,
     backgroundColor: "#F3BFB3",
     shadowColor: "#000",
-shadowOffset: {
-	width: 0,
-	height: 6,
-},
-shadowOpacity: 0.37,
-shadowRadius: 7.49,
+    shadowOffset: {
+      width: 0,
+      height: 6
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
 
-elevation: 12
+    elevation: 12
   },
   buttonText: {
     fontSize: 18

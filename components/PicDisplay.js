@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, Image, View } from "react-native";
+import { Text, Image, View, StyleSheet } from "react-native";
 import { GameConsumer } from "../Context";
 
 export default class PicDisplay extends Component {
@@ -15,7 +15,9 @@ export default class PicDisplay extends Component {
           paddingHorizontal: 10
         }}
       >
-        <Text style={{ backgroundColor: "#e4e4e4", padding: 4 }}>
+        <Text
+          style={[styles.infoBox, { backgroundColor: "#e4e4e4", padding: 4 }]}
+        >
           Select 2 to 4 pictures from camera roll the select the start button at
           bottom to begin game.
         </Text>
@@ -46,3 +48,18 @@ export default class PicDisplay extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  infoBox: {
+    marginHorizontal: 15,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 6
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
+
+    elevation: 12
+  }
+});

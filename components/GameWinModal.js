@@ -4,12 +4,11 @@ import { GameConsumer } from "../Context";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { render } from "react-dom";
 
-export default class  GameWinModal extends React.Component {
+export default class GameWinModal extends React.Component {
   navigateToGame = () => {
-    this.props.navigation.navigate("MemoryGame");
+    this.props.navigation.navigate("Images");
   };
   render() {
-
     return (
       <GameConsumer>
         {value => (
@@ -23,17 +22,20 @@ export default class  GameWinModal extends React.Component {
               <Image
                 source={require("../assets/WinnersCup.png")}
                 style={{ height: 50, width: 50, flex: 1 }}
-              /><View style={styles.textBox}>
-  
-              <Text style={styles.text}>Way to Go!</Text>
-              <Text style={styles.text}>You got them all Matched!</Text>
-              <Text style={styles.text}>Play Again?</Text>
+              />
+              <View style={styles.textBox}>
+                <Text style={styles.text}>Way to Go!</Text>
+                <Text style={styles.text}>You got them all Matched!</Text>
+                <Text style={styles.text}>Play Again?</Text>
               </View>
-              <TouchableOpacity style={styles.button} onPress={() => {
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => {
                   this.navigateToGame();
                   value.cleanStart();
-                }}>
-                  <Text>Start Game</Text>
+                }}
+              >
+                <Text>Start Game</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     height: 400
   },
-  textBox:{
+  textBox: {
     flex: 2,
     justifyContent: "space-around"
   },
@@ -81,13 +83,13 @@ const styles = StyleSheet.create({
     margin: 12,
     backgroundColor: "#B6CAEC",
     shadowColor: "#000",
-shadowOffset: {
-	width: 0,
-	height: 6,
-},
-shadowOpacity: 0.37,
-shadowRadius: 7.49,
+    shadowOffset: {
+      width: 0,
+      height: 6
+    },
+    shadowOpacity: 0.37,
+    shadowRadius: 7.49,
 
-elevation: 12
+    elevation: 12
   }
 });
