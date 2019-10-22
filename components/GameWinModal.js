@@ -1,12 +1,25 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
-import { GameConsumer } from "../Context";
+import GameContext, { GameConsumer } from "../Context";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { render } from "react-dom";
 
 export default class GameWinModal extends React.Component {
+  static contextType = GameContext;
+
+  state = {
+    context: {}
+  };
+
+  componentDidMount() {
+    let contextObject = this.context;
+    this.setState({
+      context: contextObject
+    });
+  }
+
   navigateToGame = () => {
-    this.props.navigation.navigate("Images");
+    this.props.navigation.navigate("MemoryGame");
+    this.state.context.cleanStart();
   };
   render() {
     return (
@@ -35,7 +48,7 @@ export default class GameWinModal extends React.Component {
                   value.cleanStart();
                 }}
               >
-                <Text>Start Game</Text>
+                <Text style={styles.text}>Start Game</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -50,18 +63,18 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: "150%",
     zIndex: 5,
-    backgroundColor: "rgba(150, 150, 150, 0.1)",
     justifyContent: "space-around",
     flexDirection: "row",
     height: "120%",
-    width: "100%"
+    width: "100%",
+    borderRadius: 5
   },
   hideModal: {
     top: "25%"
   },
   text: {
     fontSize: 20,
-    color: "blue"
+    color: "#3C72CB"
   },
   innerBackground: {
     width: "100%",
@@ -69,17 +82,19 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(200, 200, 200, 0.8)",
     alignItems: "center",
     justifyContent: "space-around",
-    height: 400
+    height: 400,
+    borderRadius: 5
   },
   textBox: {
     flex: 2,
     justifyContent: "space-around",
     alignItems: "center",
-    paddingVertical: 15
+    paddingVertical: 40
   },
   button: {
     width: "80%",
     height: 50,
+    paddingHorizontal: 25,
     alignItems: "center",
     justifyContent: "center",
     margin: 12,
@@ -91,7 +106,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.37,
     shadowRadius: 7.49,
-
     elevation: 12
   }
 });

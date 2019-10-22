@@ -13,15 +13,15 @@ export default class MemoryGameScreen extends React.Component {
   static contextType = GameContext;
 
   componentDidMount() {
-    let hookTest = this.context;
-    hookTest.cleanStart();
+    let contextObject = this.context;
+    contextObject.cleanStart();
     this.setState({
-      list: hookTest.gameSetupHandler()
+      list: contextObject.gameSetupHandler()
     });
   }
 
   backArrowHandler = () => {
-    this.props.navigation.navigate("Home");
+    this.props.navigation.navigate("Images");
   };
   render() {
     return (
@@ -45,7 +45,7 @@ export default class MemoryGameScreen extends React.Component {
 
         <IncorrectGuessModal />
         <CorrectGuessModal />
-        <GameWinModal />
+        <GameWinModal navigation={this.props.navigation} />
       </View>
     );
   }
