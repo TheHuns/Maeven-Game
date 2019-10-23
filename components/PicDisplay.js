@@ -36,7 +36,7 @@ export default class PicDisplay extends Component {
                     <Image
                       source={{ uri: uri }}
                       style={{ height: 120, width: 120, margin: 5 }}
-                      key={uri}
+                      key={index.toString()}
                     />
                   </View>
                 );

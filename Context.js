@@ -26,7 +26,7 @@ export class GameContextProvider extends Component {
     correctModalShowing: false,
     picList: [],
     gameCount: 0,
-    gameWinModalShow: true
+    gameWinModalShow: false
   };
 
   getCardState = number => {
@@ -140,11 +140,11 @@ export class GameContextProvider extends Component {
               gameCount: prevState.gameCount + 1
             }));
             setTimeout(() => {
-              if(this.state.gameCount == this.state.picList.length) {
-                this.setState((prevState) => ({
+              if (this.state.gameCount == this.state.picList.length) {
+                this.setState(prevState => ({
                   gameWinModalShow: !prevState.gameWinModalShow
-                }))
-              };
+                }));
+              }
               this.clearCards();
             }, 1300);
           } else {
@@ -181,6 +181,12 @@ export class GameContextProvider extends Component {
     console.log(this.state.picList);
   };
 
+  setListFromMultipleImages = list => {
+    this.setState({
+      picList: [...list]
+    });
+  };
+
   _deSelectImages = () => {
     this.setState({
       picList: []
@@ -213,7 +219,8 @@ export class GameContextProvider extends Component {
           _deSelectImages: this._deSelectImages,
           gameSetupHandler: this.gameSetupHandler,
           cleanStart: this.cleanStart,
-          gameWinModalShow: this.state.gameWinModalShow
+          gameWinModalShow: this.state.gameWinModalShow,
+          setListFromMultipleImages: this.setListFromMultipleImages
         }}
       >
         {children}

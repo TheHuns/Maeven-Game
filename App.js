@@ -16,10 +16,10 @@ const RootStack = createStackNavigator(
     Picture: TakePicturesScreen,
     Images: ImageSelectScreen,
     GameWin: GameWinModal,
-    MultipleImages: MultiplePickerScreen,
+    MultipleImages: MultiplePickerScreen
   },
   {
-    initialRouteName: "Images",
+    initialRouteName: "Home",
     headerMode: "none"
   }
 );
