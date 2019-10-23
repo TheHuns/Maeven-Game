@@ -182,6 +182,12 @@ export class GameContextProvider extends Component {
     console.log(this.state.picList);
   };
 
+  setListFromMultipleImages = list => {
+    this.setState({
+      picList: [...list]
+    });
+  };
+
   _deSelectImages = () => {
     this.setState({
       picList: []
@@ -214,7 +220,8 @@ export class GameContextProvider extends Component {
           _deSelectImages: this._deSelectImages,
           gameSetupHandler: this.gameSetupHandler,
           cleanStart: this.cleanStart,
-          gameWinModalShow: this.state.gameWinModalShow
+          gameWinModalShow: this.state.gameWinModalShow,
+          setListFromMultipleImages: this.setListFromMultipleImages
         }}
       >
         {children}

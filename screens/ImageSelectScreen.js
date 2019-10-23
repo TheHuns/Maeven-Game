@@ -31,6 +31,10 @@ export default class ImageSelectScreen extends React.Component {
     this.props.navigation.navigate("MemoryGame");
   };
 
+  navigateToPicSelect = () => {
+    this.props.navigation.navigate("MultipleImages")
+  }
+
   render() {
     return (
       <View
@@ -45,7 +49,7 @@ export default class ImageSelectScreen extends React.Component {
             {value => (
               <TouchableOpacity
                 style={styles.buttonSelect}
-                onPress={() => value._pickImage()}
+                onPress={() => this.navigateToPicSelect()}
               >
                 <Text style={(styles.buttonText, { color: "#3C72CB" })}>
                   Select Images

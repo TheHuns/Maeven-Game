@@ -5,6 +5,7 @@ import MemoryGameScreen from "./screens/MemoryGameScreen";
 import HomeScreen from "./screens/HomeScreen";
 import TakePicturesScreen from "./screens/TakePicturesScreen";
 import ImageSelectScreen from "./screens/ImageSelectScreen";
+import MultiplePickerScreen from "./screens/MultiplePickerScreen";
 import { GameContextProvider } from "./Context";
 import GameWinModal from "./components/GameWinModal";
 
@@ -14,7 +15,8 @@ const RootStack = createStackNavigator(
     MemoryGame: MemoryGameScreen,
     Picture: TakePicturesScreen,
     Images: ImageSelectScreen,
-    GameWin: GameWinModal
+    GameWin: GameWinModal,
+    MultipleImages: MultiplePickerScreen
   },
   {
     initialRouteName: "Home",
