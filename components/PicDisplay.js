@@ -31,7 +31,7 @@ export default class PicDisplay extends Component {
               let list = value.picList;
               return list.map((uri, index) => {
                 return (
-                  <View>
+                  <View style={{marginTop: 50}}>
                     <Text>{index + 1}</Text>
                     <Image
                       source={{ uri: uri }}

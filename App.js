@@ -3,7 +3,6 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import MemoryGameScreen from "./screens/MemoryGameScreen";
 import HomeScreen from "./screens/HomeScreen";
-import TakePicturesScreen from "./screens/TakePicturesScreen";
 import ImageSelectScreen from "./screens/ImageSelectScreen";
 import MultiplePickerScreen from "./screens/MultiplePickerScreen";
 import { GameContextProvider } from "./Context";
@@ -13,13 +12,12 @@ const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
     MemoryGame: MemoryGameScreen,
-    Picture: TakePicturesScreen,
     Images: ImageSelectScreen,
     GameWin: GameWinModal,
     MultipleImages: MultiplePickerScreen
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "Images",
     headerMode: "none"
   }
 );
