@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 const GameContext = React.createContext();
+import {Vibration} from 'react-native'
 import * as ImagePicker from "expo-image-picker";
 
 export class GameContextProvider extends Component {
@@ -136,12 +137,14 @@ export class GameContextProvider extends Component {
         // Callback executed when both spots in card comparison part of state have data
         () => {
           if (this.state.cardA.name == this.state.cardB.name) {
+            Vibration.vibrate();
             this.setState(prevState => ({
               correctModalShowing: !prevState.correctModalShowing,
               gameCount: prevState.gameCount + 1
             }));
             setTimeout(() => {
               if (this.state.gameCount == this.state.picList.length) {
+                Vibration.vibrate();
                 this.setState(prevState => ({
                   gameWinModalShow: !prevState.gameWinModalShow
                 }));
