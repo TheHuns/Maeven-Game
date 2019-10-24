@@ -1,16 +1,23 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, Animated } from "react-native";
 import { GameConsumer } from "../Context";
 
 export default function IncorrectGuessModal() {
   return (
     <GameConsumer>
       {value => (
-        <View
-          style={[
-            styles.modalContainer,
-            value.incorrectModalShowing ? styles.hideModal : null
-          ]}
+        <Animated.View
+          style={[{transform: [
+            {
+              translateY: value.incorrectAnimatedValue.interpolate({
+                inputRange: [0, 1],
+                outputRange: [-600, 0]
+              })
+            }
+          ]},
+            styles.modalContainer]
+            // value.incorrectModalShowing ? styles.hideModal : null
+          }
         >
           <View style={styles.innerBackground}>
             <Image
@@ -19,7 +26,7 @@ export default function IncorrectGuessModal() {
             />
             <Text style={styles.text}>So Close, Try Again!</Text>
           </View>
-        </View>
+        </Animated.View>
       )}
     </GameConsumer>
   );

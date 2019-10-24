@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 const GameContext = React.createContext();
-import {Vibration} from 'react-native'
+import {Vibration, Animated} from 'react-native'
 import * as ImagePicker from "expo-image-picker";
 
 export class GameContextProvider extends Component {
@@ -24,12 +24,25 @@ export class GameContextProvider extends Component {
       7: false
     },
     incorrectModalShowing: false,
+    incorrectAnimatedValue: new Animated.Value(0),
     correctModalShowing: false,
+    correctAnimatedValue: new Animated.Value(0),
     picList: [],
     gameCount: 0,
-    gameWinModalShow: false
+    gameWinModalShow: false,
+    winAnimatedValue: new Animated.Value(0),    
   };
 
+
+  // FADE ANIMATION FUNCTIONS
+  _startIncorrect = () => {
+    Animated.timing(this.state.incorrectAnimatedValue, {
+      toValue: 1,
+      duration: 1000
+    }).start();
+  }
+
+  // GAME LOGIC
   getCardState = number => {
     let cardState = this.state.cardsShowing[`${number}`];
     return cardState;
@@ -152,9 +165,10 @@ export class GameContextProvider extends Component {
               this.clearCards();
             }, 1300);
           } else {
-            this.setState(prevState => ({
-              incorrectModalShowing: !prevState.incorrectModalShowing
-            }));
+            // this.setState(prevState => ({
+            //   incorrectModalShowing: !prevState.incorrectModalShowing
+            // }));
+            this._startIncorrect()
             setTimeout(() => {
               this.resetCurrentCards();
               this.clearCards();
@@ -224,7 +238,9 @@ export class GameContextProvider extends Component {
           gameSetupHandler: this.gameSetupHandler,
           cleanStart: this.cleanStart,
           gameWinModalShow: this.state.gameWinModalShow,
-          setListFromMultipleImages: this.setListFromMultipleImages
+          setListFromMultipleImages: this.setListFromMultipleImages,
+          incorrectAnimatedValue: this.state.incorrectAnimatedValue,
+          _startIncorrect: this._startIncorrect
         }}
       >
         {children}
