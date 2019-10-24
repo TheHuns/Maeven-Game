@@ -31,12 +31,12 @@ export default class PicDisplay extends Component {
               let list = value.picList;
               return list.map((uri, index) => {
                 return (
-                  <View style={{marginTop: 50}}>
+                  <View style={{marginTop: 50}} key={index.toString()}>
                     <Text>{index + 1}</Text>
                     <Image
                       source={{ uri: uri }}
                       style={{ height: 120, width: 120, margin: 5 }}
-                      key={index.toString()}
+                      
                     />
                   </View>
                 );

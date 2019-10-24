@@ -17,7 +17,7 @@ const RootStack = createStackNavigator(
     MultipleImages: MultiplePickerScreen
   },
   {
-    initialRouteName: "Images",
+    initialRouteName: "Home",
     headerMode: "none"
   }
 );
