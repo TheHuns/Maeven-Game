@@ -1,21 +1,17 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, Animated } from "react-native";
 import { GameConsumer } from "../Context";
+import {SlideDown} from 'rnal'
 
 export default function IncorrectGuessModal() {
   return (
     <GameConsumer>
       {value => (
-        <Animated.View
-          style={[{transform: [
-            {
-              translateY: value.incorrectAnimatedValue.interpolate({
-                inputRange: [0, 1],
-                outputRange: [-600, 0]
-              })
-            }
-          ]},
-            styles.modalContainer]
+        <SlideDown
+          startWhen={value.incorrectModalShowing}
+          duration={500}
+          style={
+            styles.modalContainer
             // value.incorrectModalShowing ? styles.hideModal : null
           }
         >
@@ -26,7 +22,7 @@ export default function IncorrectGuessModal() {
             />
             <Text style={styles.text}>So Close, Try Again!</Text>
           </View>
-        </Animated.View>
+        </SlideDown>
       )}
     </GameConsumer>
   );
