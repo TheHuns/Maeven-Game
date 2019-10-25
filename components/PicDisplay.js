@@ -1,8 +1,29 @@
 import React, { Component } from "react";
-import { Text, Image, View, StyleSheet } from "react-native";
+import { Text, Image, View, StyleSheet, Dimensions } from "react-native";
 import { GameConsumer } from "../Context";
 
 export default class PicDisplay extends Component {
+  state = {
+    picSize: 100
+  };
+
+  componentDidMount() {
+    this.getDims();
+  }
+
+  getDims = () => {
+    let picSize;
+    let { height, width } = Dimensions.get("screen");
+    if (width < 340) {
+      picSize = width / 3.5;
+    } else {
+      picSize = width / 2.5;
+    }
+    this.setState({
+      picSize
+    });
+  };
+
   render() {
     return (
       <View
@@ -21,29 +42,42 @@ export default class PicDisplay extends Component {
           Select 2 to 4 pictures from camera roll the select the start button at
           bottom to begin game.
         </Text>
-        <GameConsumer>
-          {value => {
-            if (value.picList.length < 1) {
-              return (
-                <Text style={{ marginVertical: 50 }}>No Images Selected</Text>
-              );
-            } else {
-              let list = value.picList;
-              return list.map((uri, index) => {
-                return (
-                  <View style={{marginTop: 50}} key={index.toString()}>
-                    <Text>{index + 1}</Text>
-                    <Image
-                      source={{ uri: uri }}
-                      style={{ height: 120, width: 120, margin: 5 }}
-                      
-                    />
-                  </View>
-                );
-              });
-            }
+        <View
+          style={{
+            marginTop: 20,
+            justifyContent: "center",
+            flexDirection: "row",
+            flexWrap: "wrap",
+            alignItems: "center"
           }}
-        </GameConsumer>
+        >
+          <GameConsumer>
+            {value => {
+              if (value.picList.length < 1) {
+                return (
+                  <Text style={{ marginVertical: 50 }}>No Images Selected</Text>
+                );
+              } else {
+                let list = value.picList;
+                return list.map((uri, index) => {
+                  return (
+                    <View key={index.toString()}>
+                      <Text>{index + 1}</Text>
+                      <Image
+                        source={{ uri: uri }}
+                        style={{
+                          height: this.state.picSize,
+                          width: this.state.picSize,
+                          margin: 5
+                        }}
+                      />
+                    </View>
+                  );
+                });
+              }
+            }}
+          </GameConsumer>
+        </View>
       </View>
     );
   }

@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   innerBackground: {
     width: "100%",
     padding: 10,
-    backgroundColor: "rgba(200, 200, 200, 0.8)",
+    backgroundColor: "rgba(200, 200, 200, 0.9)",
     alignItems: "center",
     justifyContent: "space-around",
     height: 400,

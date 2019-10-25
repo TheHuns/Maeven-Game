@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 const GameContext = React.createContext();
-import {Vibration, Animated} from 'react-native'
+import { Vibration, Animated } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 
 export class GameContextProvider extends Component {
@@ -24,15 +24,14 @@ export class GameContextProvider extends Component {
       7: false
     },
     incorrectModalShowing: false,
-    incorrectAnimatedValue: new Animated.Value(0),
+    incorrectAnimatedValue: false,
     correctModalShowing: false,
-    correctAnimatedValue: new Animated.Value(0),
+    correctAnimatedValue: false,
     picList: [],
     gameCount: 0,
     gameWinModalShow: false,
-    winAnimatedValue: new Animated.Value(0),    
+    winAnimatedValue: false
   };
-
 
   // FADE ANIMATION FUNCTIONS
   _startIncorrect = () => {
@@ -40,7 +39,7 @@ export class GameContextProvider extends Component {
       toValue: 1,
       duration: 1000
     }).start();
-  }
+  };
 
   // GAME LOGIC
   getCardState = number => {
@@ -165,10 +164,9 @@ export class GameContextProvider extends Component {
               this.clearCards();
             }, 1300);
           } else {
-            // this.setState(prevState => ({
-            //   incorrectModalShowing: !prevState.incorrectModalShowing
-            // }));
-            this._startIncorrect()
+            this.setState(prevState => ({
+              incorrectModalShowing: !prevState.incorrectModalShowing
+            }));
             setTimeout(() => {
               this.resetCurrentCards();
               this.clearCards();
