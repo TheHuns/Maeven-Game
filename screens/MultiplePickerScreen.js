@@ -127,9 +127,7 @@ export default class ImageBrowser extends React.Component {
     this.state.value.setListFromMultipleImages(selectedPhotos);
 
     this.navigateToImageSelect();
-
-    console.log(selectedPhotos);
-  };
+  }
 
   renderHeader = () => {
     let selectedCount = this.state.selected.length;
